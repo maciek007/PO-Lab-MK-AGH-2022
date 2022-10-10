@@ -1,6 +1,7 @@
 package agh.ics.oop;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class World {
@@ -9,7 +10,6 @@ public class World {
         System.out.println("system wystartował");
 
         Stream<Direction> sd = interpret(args);
-
         run(sd);
 
         System.out.println("system zakończył działanie");
@@ -25,7 +25,6 @@ public class World {
                                 case RIGHT -> "Zwierzak skręca w prawo";
                                 case LEFT -> "Zwierzak skręca w lewo";
                                 case BACKWARD -> "Zwierzak idzie do tyłu";
-                                case UNKNOWN -> "Zwierzak oszalał";
                             };
                             System.out.println(msg);
                         }
@@ -41,8 +40,8 @@ public class World {
                     case "b" -> Direction.BACKWARD;
                     case "l" -> Direction.LEFT;
                     case "r" -> Direction.RIGHT;
-                    default -> Direction.UNKNOWN;
-                });
+                    default -> null;
+                }).filter(Objects::nonNull);
     }
 
 }
