@@ -8,11 +8,18 @@ public class Vector2d
     final public int x;
     final public int y;
 
-    public  Vector2d(int x, int y)
+    public Vector2d(int x, int y)
     {
         this.x = x;
         this.y = y;
     }
+    public Vector2d(Vector2d other)
+    {
+        this.x = other.x;
+        this.y = other.y;
+    }
+
+
     public String toString()
     {
         return "(" + x + "," + y + ")";

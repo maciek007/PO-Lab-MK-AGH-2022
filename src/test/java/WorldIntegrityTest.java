@@ -1,54 +1,83 @@
-import agh.ics.oop.Animal;
-import agh.ics.oop.Vector2d;
+import agh.ics.oop.*;
 import org.junit.jupiter.api.Test;
 
-import static agh.ics.oop.World.AnimalMovement;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class WorldIntegrityTest {
     @Test
-    void BorderMoveTest() {
-        Animal animal = new Animal();
+    void NormalCaseTest() {
+        String [] args = {"r","l","f","f","f","b"};
+        MoveDirection[] directions = OptionsParser.parse(args);
 
-        //Reaching Borders and trying to exceed them
-        AnimalMovement(new String[]{"f", "f", "f", "f", "b", "f", "f", "r"}, animal);
-        assertEquals("Wschód; (2,4)", animal.toString());
+        // case without collision
+        IWorldMap map = new RectangularMap(5, 5);
+        Vector2d[] positions = { new Vector2d(2,3), new Vector2d(2,1), new Vector2d(2,2)};
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
+        String result = new MapVisualizer(map).draw(new Vector2d(0,0),new Vector2d(4,4));
+        assertEquals(
+                """
+                         y\\x  0 1 2 3 4\r
+                          5: -----------\r
+                          4: | | | | | |\r
+                          3: | | | |>| |\r
+                          2: | | | | | |\r
+                          1: | |<|^| | |\r
+                          0: | | | | | |\r
+                         -1: -----------\r
+                        """,result
+        );
 
-        AnimalMovement(new String[]{"f", "f", "f", "l"}, animal);
-        assertEquals("Północ; (4,4)", animal.toString());
-
-        AnimalMovement(new String[]{"b", "b", "b", "b", "b"}, animal);
-        assertEquals("Północ; (4,0)", animal.toString());
-
-        AnimalMovement(new String[]{"l", "f", "f", "f", "f", "f"}, animal);
-        assertEquals("Zachód; (0,0)", animal.toString());
-
+        // case with 2 collisions and 1 animal which cannot be placed
+        args = new String[]{"f","l","r","f","f","f"};
+        directions = OptionsParser.parse(args);
+        map = new RectangularMap(5, 5);
+        positions = new Vector2d[]{new Vector2d(2, 2), new Vector2d(2, 1), new Vector2d(2, 3), new Vector2d(2, 2)};
+        engine = new SimulationEngine(directions, map, positions);
+        engine.run();
+        result = new MapVisualizer(map).draw(new Vector2d(0,0),new Vector2d(4,4));
+        assertEquals(
+                """
+                         y\\x  0 1 2 3 4\r
+                          5: -----------\r
+                          4: | | | | | |\r
+                          3: | | | |>| |\r
+                          2: | | |^| | |\r
+                          1: | |<| | | |\r
+                          0: | | | | | |\r
+                         -1: -----------\r
+                        """,result
+        );
     }
 
     @Test
-    void StandardMovementTest(){
+    void MarginalCaseTest()
+    {
+        String [] args = {"f","f","f","r","f"};
+        MoveDirection[] directions = OptionsParser.parse(args);
+        IWorldMap map = new RectangularMap(1, 1);
+        Vector2d[] positions = { new Vector2d(0,0), new Vector2d(0,0), new Vector2d(1,1)};
 
-        //going to point (3,3)
-        Animal animal = new Animal();
-        AnimalMovement(new String[]{"f","r","f"},animal);
-        assertEquals("Wschód; (3,3)",animal.toString());
-        //isAt unitTest
-        assertTrue(animal.isAt(new Vector2d(3,3)));
-        assertFalse(animal.isAt(new Vector2d(3,2)));
-        assertFalse(animal.isAt(new Vector2d(2,3)));
-
-
-        //do circle
-        animal = new Animal();
-        AnimalMovement(new String[]{"f","r","f","r","f","r","f"},animal);
-        assertEquals("Zachód; (2,2)",animal.toString());
-
-
-        //straight line
-        animal = new Animal();
-        AnimalMovement(new String[]{"f","f","b","b","b","b","f","f"},animal);
-        assertEquals("Północ; (2,2)",animal.toString());
-
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
+        String result = new MapVisualizer(map).draw(new Vector2d(0,0),new Vector2d(1,1));
+        assertEquals(
+                """
+                         y\\x  0 1\r
+                          2: -----\r
+                          1: | | |\r
+                          0: |>| |\r
+                         -1: -----\r
+                        """,result
+        );
     }
 
 }
+
+//    String [] args = {"","","",""};
+//    MoveDirection[] directions = OptionsParser.parse(args);
+//    IWorldMap map = new RectangularMap(1, 1);
+//    Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+//    IEngine engine = new SimulationEngine(directions, map, positions);
+//        engine.run();
+//                System.out.print(map);
