@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91df3c7f-0e58-4e3f-88c7-773c9b5ef819" name="Changes" comment="lab4">
+    <list default="true" id="91df3c7f-0e58-4e3f-88c7-773c9b5ef819" name="Changes" comment="lab4 - drawing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/oop/MapVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/oop/MapVisualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/oop/RectangularMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/oop/RectangularMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/oop/SimulationEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/oop/SimulationEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/agh/ics/oop/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/agh/ics/oop/World.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/WorldIntegrityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/WorldIntegrityTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +60,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/agh/ics/oop/World.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/test/java/MapDirectionTest.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -88,14 +93,14 @@
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
-  <component name="RunManager" selected="Gradle.WorldIntegrityTest.MarginalCaseTest">
+  <component name="RunManager" selected="Application.World">
     <configuration name="World" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="agh.ics.oop.World" />
       <module name="oolab.main" />
-      <option name="PROGRAM_PARAMETERS" value="f b r l f f r r f f f f f f f f" />
+      <option name="PROGRAM_PARAMETERS" value="f f r f l b b f r l" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="agh.ics.oop.*" />
+          <option name="PATTERN" value="agh.ics.oop.MapVisualizer" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -103,7 +108,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WorldIntegrityTest.CollisionCaseTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="WorldIntegrityTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -116,7 +121,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;WorldIntegrityTest.CollisionCaseTest&quot;" />
+            <option value="&quot;WorldIntegrityTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -197,18 +202,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.World" />
+      <item itemvalue="Gradle.WorldIntegrityTest" />
       <item itemvalue="Gradle.WorldIntegrityTest.MarginalCaseTest" />
-      <item itemvalue="Gradle.WorldIntegrityTest.CollisionCaseTest" />
       <item itemvalue="Gradle.WorldIntegrityTest.ExerciseCaseTest" />
       <item itemvalue="Gradle.WorldIntegrityTest.NormalCaseTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.WorldIntegrityTest.MarginalCaseTest" />
-        <item itemvalue="Gradle.WorldIntegrityTest.ExerciseCaseTest" />
-        <item itemvalue="Gradle.WorldIntegrityTest.CollisionCaseTest" />
-        <item itemvalue="Gradle.WorldIntegrityTest.NormalCaseTest" />
         <item itemvalue="Application.World" />
+        <item itemvalue="Gradle.WorldIntegrityTest.MarginalCaseTest" />
+        <item itemvalue="Gradle.WorldIntegrityTest" />
+        <item itemvalue="Gradle.WorldIntegrityTest.NormalCaseTest" />
+        <item itemvalue="Gradle.WorldIntegrityTest.ExerciseCaseTest" />
       </list>
     </recent_temporary>
   </component>
@@ -270,7 +275,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="tests" />
                       </list>
                     </value>
                   </entry>
@@ -288,22 +293,10 @@
     <MESSAGE value="lab2" />
     <MESSAGE value="lab3" />
     <MESSAGE value="lab4" />
-    <option name="LAST_COMMIT_MESSAGE" value="lab4" />
+    <MESSAGE value="lab4 - drawing" />
+    <option name="LAST_COMMIT_MESSAGE" value="lab4 - drawing" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/agh/ics/oop/SimulationEngine.java</url>
-          <line>22</line>
-          <properties class="agh.ics.oop.SimulationEngine" method="run">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
         <watch expression="md" />

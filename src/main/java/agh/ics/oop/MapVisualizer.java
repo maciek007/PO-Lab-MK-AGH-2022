@@ -1,5 +1,10 @@
 package agh.ics.oop;
 
+import javax.swing.*;
+import java.awt.*;
+
+import static java.lang.Math.min;
+
 /**
  * The map visualizer converts the {@link IWorldMap} map into a string
  * representation.
@@ -84,6 +89,37 @@ public class MapVisualizer {
             result = EMPTY_CELL;
         }
         return result;
+    }
+
+    public JPanel drawGrid(Vector2d lowerLeft, Vector2d upperRight)
+    {
+        int width = upperRight.substract(lowerLeft).x+1;
+        int height = upperRight.substract(lowerLeft).y+1;
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(height,width,1,1));
+        panel.setBackground(Color.BLACK);
+
+        int scalar = min(760/width,460/height);
+
+        panel.setSize(width*scalar,height*scalar);
+        //System.out.println(panel.getSize());
+
+
+
+        for(int j = 0; j<height;j++) {
+            for(int i = 0; i<width;i++){
+                JLabel l = new JLabel(  drawObject( new Vector2d(i,height-j-1) ),SwingConstants.CENTER );
+                l.setBackground(Color.GRAY);
+                l.setOpaque(true);
+                l.setVerticalAlignment(SwingConstants.CENTER);
+                l.setFont(new Font("Serif", Font. BOLD, scalar/2));
+                l.setSize(scalar,scalar);
+                panel.add(l);
+            }
+        }
+
+        return panel;
     }
 
 }

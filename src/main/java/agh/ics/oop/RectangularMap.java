@@ -1,5 +1,6 @@
 package agh.ics.oop;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class RectangularMap implements IWorldMap{
@@ -49,4 +50,8 @@ public class RectangularMap implements IWorldMap{
     public String toString() {
         return new MapVisualizer(this).draw(new Vector2d(0,0), new Vector2d(width-1,height-1));
     }
+    public JPanel toGrid() {
+        return new MapVisualizer(this).drawGrid(new Vector2d(0,0), new Vector2d(width-1,height-1));
+    }
+
 }

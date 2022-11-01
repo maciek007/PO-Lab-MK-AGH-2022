@@ -39,7 +39,6 @@ public class WorldIntegrityTest {
         Vector2d[] positions = new Vector2d[]{new Vector2d(2, 2), new Vector2d(2, 1), new Vector2d(2, 3), new Vector2d(2, 2)};
         IEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-        String result = new MapVisualizer(map).draw(new Vector2d(0,0),new Vector2d(4,4));
         assertEquals(
                 parseString("""
                           4: | | | | | |
@@ -47,7 +46,7 @@ public class WorldIntegrityTest {
                           2: | | |^| | |
                           1: | |<| | | |
                           0: | | | | | |
-                        """),parseString(result)
+                        """),parseString(map.toString())
         );
     }
 
@@ -60,7 +59,6 @@ public class WorldIntegrityTest {
         Vector2d[] positions =  { new Vector2d(2,2), new Vector2d(3,4) };
         IEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-        String result = new MapVisualizer(map).draw(new Vector2d(0,0),new Vector2d(9,4));
         assertEquals(
                 parseString("""
                          
@@ -70,7 +68,7 @@ public class WorldIntegrityTest {
                            | | | | | | | | | | |
                            | | |˅| | | | | | | |
                          
-                        """),parseString(result)
+                        """),parseString(map.toString())
         );
     }
 
