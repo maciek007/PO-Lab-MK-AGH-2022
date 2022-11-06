@@ -50,7 +50,7 @@ public class SimulationEngine implements IEngine,ActionListener{
         visualization.setLayout(null);
         JButton startButton = new JButton("Start Simulation");
 
-        JPanel currentMap = ((RectangularMap)map).toGrid();
+        JPanel currentMap = map.toGrid();
 
 
         mapContainer = new JPanel();
@@ -102,7 +102,7 @@ public class SimulationEngine implements IEngine,ActionListener{
             animal_i %= animals.size();
             moveDirection_i += 1;
             mapContainer.removeAll();
-            mapContainer.add(((RectangularMap) map).toGrid());
+            mapContainer.add(map.toGrid());
             mapContainer.revalidate();
             mapContainer.repaint();
         }

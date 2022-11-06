@@ -1,5 +1,7 @@
 package agh.ics.oop;
 
+import javax.swing.*;
+
 /**
  * The interface responsible for interacting with the map of the world.
  * Assumes that Vector2d and MoveDirection classes are defined.
@@ -46,4 +48,5 @@ public interface IWorldMap {
      * @return Object or null if the position is not occupied.
      */
     Object objectAt(Vector2d position);
+    JPanel toGrid();
 }

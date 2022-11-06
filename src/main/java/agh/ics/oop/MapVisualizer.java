@@ -78,7 +78,7 @@ public class MapVisualizer {
 
     private String drawObject(Vector2d currentPosition) {
         String result = null;
-        if (this.map.isOccupied(currentPosition)) {
+        if (this.map.objectAt(currentPosition)!=null) {
             Object object = this.map.objectAt(currentPosition);
             if (object != null) {
                 result = object.toString();
@@ -107,9 +107,9 @@ public class MapVisualizer {
 
 
 
-        for(int j = 0; j<height;j++) {
-            for(int i = 0; i<width;i++){
-                JLabel l = new JLabel(  drawObject( new Vector2d(i,height-j-1) ),SwingConstants.CENTER );
+        for(int j = lowerLeft.y; j<=upperRight.y;j++) {
+            for(int i = lowerLeft.x; i<= upperRight.x;i++){
+                JLabel l = new JLabel(  drawObject( new Vector2d(i, upperRight.y-j+ lowerLeft.y) ),SwingConstants.CENTER );
                 l.setBackground(Color.GRAY);
                 l.setOpaque(true);
                 l.setVerticalAlignment(SwingConstants.CENTER);
