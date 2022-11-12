@@ -18,11 +18,13 @@ public class SimulationEngine implements IEngine,ActionListener{
     private JPanel mapContainer;
 
 
-    public SimulationEngine(MoveDirection []md, IWorldMap map, Vector2d [] positions) {
+    public SimulationEngine(MoveDirection []md, IWorldMap map, IPositionChangeObserver observer, Vector2d [] positions) {
         for (Vector2d p : positions) {
             Animal animToAdd = new Animal(map, p);
-            if (map.place(animToAdd))
+            if (map.place(animToAdd)) {
                 animals.add(animToAdd);
+                animToAdd.addObserver(observer);
+            }
         }
         this.moveDirection = md;
         this.map = map;

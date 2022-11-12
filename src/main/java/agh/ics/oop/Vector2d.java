@@ -1,5 +1,7 @@
 package agh.ics.oop;
 
+import java.util.Objects;
+
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
@@ -48,6 +50,7 @@ public class Vector2d
     {
         return new Vector2d(this.x - other.x,this.y - other.y);
     }
+    @Override
     public boolean equals(Object other)
     {
         if(this == other)
@@ -56,6 +59,12 @@ public class Vector2d
             return false;
         return (that.x==this.x && that.y == this.y);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+
     public Vector2d opposite()
     {
         return new Vector2d(-this.x,-this.y);

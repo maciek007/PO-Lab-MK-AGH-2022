@@ -10,9 +10,10 @@ public class World {
 
         MoveDirection[] directions = OptionsParser.parse(args);
         //IWorldMap map = new RectangularMap(10, 5);
-        IWorldMap map = new GrassField(10);
+        GrassField gf = new GrassField(10);
+
         Vector2d[] positions = { new Vector2d(2,2), new Vector2d(5,4) };
-        SimulationEngine engine = new SimulationEngine(directions, map, positions);
+        SimulationEngine engine = new SimulationEngine(directions, gf, gf, positions);
         if(op==1)engine.run();
         else engine.runWithVisualization();
     }

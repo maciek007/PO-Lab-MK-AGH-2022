@@ -1,13 +1,20 @@
 package agh.ics.oop;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.util.HashMap;
 
-public abstract class AbstractWorldMap implements IWorldMap{
+public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver{
 
-    protected final ArrayList <Animal> animals = new ArrayList<>();
+    protected final HashMap<Vector2d, Animal> animals = new HashMap<>();
     protected int width;
     protected int height;
+
+    @Override
+    public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
+        Animal a = animals.remove(oldPosition);
+        if(a!=null)
+            animals.put(newPosition,a);
+    }
 
     @Override
     abstract public boolean canMoveTo(Vector2d position);
@@ -15,7 +22,7 @@ public abstract class AbstractWorldMap implements IWorldMap{
     @Override
     public boolean place(Animal animal){
         if (canMoveTo(animal.getPosition())) {
-            animals.add(animal);
+            animals.put(animal.getPosition(), animal);
             return true;
         }
         return false;
@@ -23,9 +30,7 @@ public abstract class AbstractWorldMap implements IWorldMap{
 
     @Override
     public boolean isOccupied(Vector2d position) {
-        for (Animal a : animals)
-            if(a.isAt(position)) return true;
-        return false;
+        return animals.containsKey(position);
     }
 
     abstract public Object objectAt(Vector2d position);
