@@ -14,17 +14,16 @@ public class SimulationEngine implements IEngine,ActionListener{
     private final IWorldMap map;
     private final ArrayList<Animal> animals = new ArrayList<>();
 
+    private Timer timer;
     private JFrame frame;
     private JPanel mapContainer;
 
 
-    public SimulationEngine(MoveDirection []md, IWorldMap map, IPositionChangeObserver observer, Vector2d [] positions) {
+    public SimulationEngine(MoveDirection []md, IWorldMap map, Vector2d [] positions) {
         for (Vector2d p : positions) {
             Animal animToAdd = new Animal(map, p);
-            if (map.place(animToAdd)) {
-                animals.add(animToAdd);
-                animToAdd.addObserver(observer);
-            }
+            map.place(animToAdd);
+            animals.add(animToAdd);
         }
         this.moveDirection = md;
         this.map = map;
@@ -85,7 +84,6 @@ public class SimulationEngine implements IEngine,ActionListener{
 
     private void startPresentation(){
         if(animals.size()==0)return;
-        Timer timer;
         timer = new Timer(600, this);
         timer.start();
 
@@ -96,8 +94,6 @@ public class SimulationEngine implements IEngine,ActionListener{
     private int animal_i=0;
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(moveDirection_i);
-        System.out.println(moveDirection.length);
         if(moveDirection_i<moveDirection.length) {
             animals.get(animal_i).move(moveDirection[moveDirection_i]);
             animal_i += 1;
@@ -108,5 +104,7 @@ public class SimulationEngine implements IEngine,ActionListener{
             mapContainer.revalidate();
             mapContainer.repaint();
         }
+        else
+            timer.stop();
     }
 }

@@ -3,7 +3,8 @@ package agh.ics.oop;
 import javax.swing.*;
 
 public class RectangularMap extends AbstractWorldMap{
-
+    protected int width;
+    protected int height;
 
     public RectangularMap(int width, int height) {
         this.width = width;

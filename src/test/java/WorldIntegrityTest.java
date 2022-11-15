@@ -36,7 +36,7 @@ public class WorldIntegrityTest {
         String [] args = new String[]{"f","l","r","f","f","f"};
         MoveDirection [] directions = OptionsParser.parse(args);
         IWorldMap map = new RectangularMap(5, 5);
-        Vector2d[] positions = new Vector2d[]{new Vector2d(2, 2), new Vector2d(2, 1), new Vector2d(2, 3), new Vector2d(2, 2)};
+        Vector2d[] positions = new Vector2d[]{new Vector2d(2, 2), new Vector2d(2, 1), new Vector2d(2, 3)};
         IEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
         assertEquals(
@@ -78,7 +78,7 @@ public class WorldIntegrityTest {
         String [] args = {"f","f","f","r","f"};
         MoveDirection[] directions = OptionsParser.parse(args);
         IWorldMap map = new RectangularMap(1, 1);
-        Vector2d[] positions = { new Vector2d(0,0), new Vector2d(0,0), new Vector2d(1,1)};
+        Vector2d[] positions = {new Vector2d(0,0)};
 
         IEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();

@@ -6,8 +6,7 @@ import java.util.HashMap;
 public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver{
 
     protected final HashMap<Vector2d, Animal> animals = new HashMap<>();
-    protected int width;
-    protected int height;
+    protected final MapBoundary bounds = new MapBoundary();
 
     @Override
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
@@ -17,15 +16,17 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
     }
 
     @Override
-    abstract public boolean canMoveTo(Vector2d position);
+    abstract public boolean canMoveTo(Vector2d position) throws IllegalArgumentException;
 
     @Override
-    public boolean place(Animal animal){
+    public void place(Animal animal){
         if (canMoveTo(animal.getPosition())) {
             animals.put(animal.getPosition(), animal);
-            return true;
+            animal.addObserver(this);
+            bounds.addMapElement(animal);
         }
-        return false;
+        else
+            throw new IllegalArgumentException("Nie można umieścić zwierzęcia na polu " + animal.getPosition());
     }
 
     @Override

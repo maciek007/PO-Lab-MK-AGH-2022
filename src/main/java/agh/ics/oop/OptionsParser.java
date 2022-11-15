@@ -3,17 +3,18 @@ package agh.ics.oop;
 import java.util.Arrays;
 
 public class OptionsParser {
-    public static MoveDirection[] parse(String[] s_tab)
+    public static MoveDirection[] parse(String[] s_tab) throws IllegalArgumentException
     {
         MoveDirection[] md = new MoveDirection[s_tab.length];
         int index = 0;
         for(String c: s_tab)
         {
             switch (c) {
-                case "f" -> md[index++] = MoveDirection.FORWARD;
-                case "b" -> md[index++] = MoveDirection.BACKWARD;
-                case "l" -> md[index++] = MoveDirection.LEFT;
-                case "r" -> md[index++] = MoveDirection.RIGHT;
+                case "f", "forward" -> md[index++] = MoveDirection.FORWARD;
+                case "b", "backward" -> md[index++] = MoveDirection.BACKWARD;
+                case "l", "left" -> md[index++] = MoveDirection.LEFT;
+                case "r", "right" -> md[index++] = MoveDirection.RIGHT;
+                default -> throw new IllegalArgumentException(c + " is not legal move specification");
             }
         }
 
