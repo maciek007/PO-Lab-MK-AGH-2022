@@ -1,11 +1,12 @@
 package agh.ics.oop;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class OptionsParser {
-    public static MoveDirection[] parse(String[] s_tab) throws IllegalArgumentException
+    public static MoveDirection[] parse(List<String> s_tab) throws IllegalArgumentException
     {
-        MoveDirection[] md = new MoveDirection[s_tab.length];
+        MoveDirection[] md = new MoveDirection[s_tab.size()];
         int index = 0;
         for(String c: s_tab)
         {

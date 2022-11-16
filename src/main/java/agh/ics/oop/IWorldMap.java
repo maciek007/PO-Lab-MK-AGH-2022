@@ -1,6 +1,7 @@
 package agh.ics.oop;
 
-import javax.swing.*;
+import javafx.scene.layout.GridPane;
+
 
 /**
  * The interface responsible for interacting with the map of the world.
@@ -48,5 +49,5 @@ public interface IWorldMap {
      * @return Object or null if the position is not occupied.
      */
     Object objectAt(Vector2d position);
-    JPanel toGrid();
+    GridPane toGrid();
 }

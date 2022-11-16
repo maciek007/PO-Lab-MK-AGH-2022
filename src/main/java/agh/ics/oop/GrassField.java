@@ -1,6 +1,5 @@
 package agh.ics.oop;
 
-import javax.swing.*;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -59,11 +58,6 @@ public class GrassField extends AbstractWorldMap{
         return new MapVisualizer(this).draw(v[0],v[1]);
     }
 
-    @Override
-    public JPanel toGrid() {
-        Vector2d[] v = bounds.getBounds();
-        return new MapVisualizer(this).drawGrid(v[0],v[1]);
-    }
     public boolean canMoveTo(Vector2d position)
     {
         if(isOccupiedByGrass(position))

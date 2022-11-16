@@ -1,7 +1,5 @@
 package agh.ics.oop;
 
-import javax.swing.*;
-
 public class RectangularMap extends AbstractWorldMap{
     protected int width;
     protected int height;
@@ -20,9 +18,6 @@ public class RectangularMap extends AbstractWorldMap{
     @Override
     public String toString() {
         return new MapVisualizer(this).draw(new Vector2d(0,0), new Vector2d(width-1,height-1));
-    }
-    public JPanel toGrid() {
-        return new MapVisualizer(this).drawGrid(new Vector2d(0,0), new Vector2d(width-1,height-1));
     }
 
     public boolean canMoveTo(Vector2d position)

@@ -1,7 +1,11 @@
 package agh.ics.oop;
 
-import javax.swing.*;
-import java.awt.*;
+import javafx.geometry.HPos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Font;
 
 import static java.lang.Math.min;
 
@@ -91,35 +95,55 @@ public class MapVisualizer {
         return result;
     }
 
-    public JPanel drawGrid(Vector2d lowerLeft, Vector2d upperRight)
+    public GridPane drawGrid(Vector2d lowerLeft, Vector2d upperRight)
     {
-        int width = upperRight.substract(lowerLeft).x+1;
-        int height = upperRight.substract(lowerLeft).y+1;
+        int width = upperRight.substract(lowerLeft).x+2;
+        int height = upperRight.substract(lowerLeft).y+2;
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(height,width,1,1));
-        panel.setBackground(Color.BLACK);
+        GridPane grid = new GridPane();
 
-        int scalar = min(760/width,460/height);
-
-        panel.setSize(width*scalar,height*scalar);
-        //System.out.println(panel.getSize());
-
-
+        float scalar = min(800/width,800/height);
 
         for(int j = lowerLeft.y; j<=upperRight.y;j++) {
+            Label l = new Label(Integer.toString(j));
+            l.setFont(new Font(scalar*2/3));
+            GridPane.setHalignment(l, HPos.CENTER);
+            grid.add(l,0,upperRight.y - j+1);
+        }
+        for(int i = lowerLeft.x; i<= upperRight.x;i++) {
+            Label l = new Label(Integer.toString(i));
+            l.setFont(new Font(scalar*2/3));
+            GridPane.setHalignment(l, HPos.CENTER);
+            grid.add(l,i-lowerLeft.x+1,0);
+        }
+
+        {
+            Label l = new Label("y/x");
+            l.setFont(new Font(scalar * 2 / 3));
+            GridPane.setHalignment(l, HPos.CENTER);
+            grid.add(l, 0, 0);
+        }
+
+        grid.getColumnConstraints().add(new ColumnConstraints(scalar));
+        grid.getRowConstraints().add(new RowConstraints(scalar));
+
+        for(int j = lowerLeft.y; j<=upperRight.y;j++) {
+            grid.getRowConstraints().add(new RowConstraints(scalar));
             for(int i = lowerLeft.x; i<= upperRight.x;i++){
-                JLabel l = new JLabel(  drawObject( new Vector2d(i, upperRight.y-j+ lowerLeft.y) ),SwingConstants.CENTER );
-                l.setBackground(Color.GRAY);
-                l.setOpaque(true);
-                l.setVerticalAlignment(SwingConstants.CENTER);
-                l.setFont(new Font("Serif", Font. BOLD, scalar/2));
-                l.setSize(scalar,scalar);
-                panel.add(l);
+                //grid.getColumnConstraints().add(new ColumnConstraints(scalar));
+                Label l = new Label(  drawObject( new Vector2d(i, upperRight.y-j+ lowerLeft.y) ));
+                l.setFont(new Font(scalar*2/3));
+                GridPane.setHalignment(l, HPos.CENTER);
+                grid.add(l,i-lowerLeft.x+1,upperRight.y - j+1);
+
             }
         }
 
-        return panel;
+        for(int i = lowerLeft.x; i<= upperRight.x;i++)
+            grid.getColumnConstraints().add(new ColumnConstraints(scalar));
+        grid.setGridLinesVisible(true);
+
+        return grid;
     }
 
 }

@@ -1,6 +1,6 @@
 package agh.ics.oop;
 
-import javax.swing.*;
+import javafx.scene.layout.GridPane;
 import java.util.HashMap;
 
 public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver{
@@ -42,9 +42,10 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
 //    {
 //        return new MapVisualizer(this).draw(new Vector2d(0,0), new Vector2d(width-1,height-1));
 //    }
-    abstract public JPanel toGrid();
-//    {
-//        return new MapVisualizer(this).drawGrid(new Vector2d(0,0), new Vector2d(width-1,height-1));
-//    }
+    public GridPane toGrid()
+    {
+        Vector2d[] v = bounds.getBounds();
+        return new MapVisualizer(this).drawGrid(v[0],v[1]);
+    }
 
 }
