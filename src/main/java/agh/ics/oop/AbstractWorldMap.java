@@ -16,10 +16,10 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
     }
 
     @Override
-    abstract public boolean canMoveTo(Vector2d position) throws IllegalArgumentException;
+    abstract public boolean canMoveTo(Vector2d position);
 
     @Override
-    public void place(Animal animal){
+    public void place(Animal animal) throws IllegalArgumentException{
         if (canMoveTo(animal.getPosition())) {
             animals.put(animal.getPosition(), animal);
             animal.addObserver(this);
