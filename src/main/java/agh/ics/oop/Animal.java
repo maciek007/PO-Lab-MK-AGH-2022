@@ -45,4 +45,13 @@ public class Animal extends AbstractMapElement{
         return false;
     }
 
+    @Override
+    public String getResourcePath() {
+        return orientation.toResPath();
+    }
+
+    @Override
+    public String getLabel() {
+        return "Z "+position;
+    }
 }

@@ -1,6 +1,8 @@
 package agh.ics.oop;
 
 import javafx.scene.layout.GridPane;
+
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver{
@@ -34,7 +36,7 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
         return animals.containsKey(position);
     }
 
-    abstract public Object objectAt(Vector2d position);
+    abstract public AbstractMapElement objectAt(Vector2d position);
 
 
     @Override
@@ -42,7 +44,7 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
 //    {
 //        return new MapVisualizer(this).draw(new Vector2d(0,0), new Vector2d(width-1,height-1));
 //    }
-    public GridPane toGrid()
+    public GridPane toGrid() throws FileNotFoundException
     {
         Vector2d[] v = bounds.getBounds();
         return new MapVisualizer(this).drawGrid(v[0],v[1]);

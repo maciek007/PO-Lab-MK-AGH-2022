@@ -6,18 +6,9 @@ import java.util.List;
 public abstract class AbstractMapElement {
     protected Vector2d position;
     protected final List<IPositionChangeObserver> observers = new ArrayList<>();
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o.getClass() != this.getClass()) return false;
-//        AbstractMapElement that = (AbstractMapElement) o;
-//        return Objects.equals(position, that.position);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(position, getClass());
-//    }
+
+    public abstract String getResourcePath();
+    public abstract String getLabel();
 
     public Vector2d getPosition(){
         return position;

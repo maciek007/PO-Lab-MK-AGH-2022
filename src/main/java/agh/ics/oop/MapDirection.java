@@ -5,6 +5,12 @@ public enum MapDirection {
     SOUTH,
     WEST,
     EAST;
+
+    final static String guiNORTH = "src/main/resources/up.png";
+    final static String guiEAST = "src/main/resources/right.png";
+    final static String guiSOUTH = "src/main/resources/down.png";
+    final static String guiWEST = "src/main/resources/left.png";
+
     public String toString()
     {
         return switch (this) {
@@ -14,6 +20,17 @@ public enum MapDirection {
             case WEST -> "<";
         };
     }
+
+    public String toResPath()
+    {
+        return switch (this) {
+            case NORTH -> guiNORTH;
+            case EAST -> guiEAST;
+            case SOUTH -> guiSOUTH;
+            case WEST -> guiWEST;
+        };
+    }
+
     public MapDirection next()
     {
         return switch (this) {
